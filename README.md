@@ -1,5 +1,7 @@
 # "No job functions found" warning when upgrading Microsoft.Azure.Functions.Worker.Sdk to 1.16.0 or above
 
+## Background
+
 I am trying to migrate my HTTP-triggered Azure Functions Apps to isolated process. For myself to understand how an isolated-process Functions app work, I started from the template provided by the Azure Functions Core Tools (version 4.0.5348 - the latest NixOS provides at the time of writing) following official [Quick-Start Guide](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-cli-csharp?tabs=linux%2Cazure-cli).
 
 The template works without upgrading any of the libraries that come with it.
@@ -12,6 +14,14 @@ HTTP-triggered API stopped working and gave me the following warning message.
 ```
 No job functions found. Try making your job classes and methods public. If you're using binding extensions (e.g. Azure Storage, ServiceBus, Timers, etc.) make sure you've called the registration method for the extension(s) in your startup code (e.g. builder.AddAzureStorage(), builder.AddServiceBus(), builder.AddTimers(), etc.).
 ```
+
+## The Question
+
+How do I modify the codebase from the templates to fix this problem and let the
+Azure Functions app
+run under the latest `Microsoft.Azure.Functions.Worker.Sdk`?
+
+## The cause
 
 The library versions come with the framework, at the time of writing, are
 
@@ -39,11 +49,12 @@ After a few trial-and-errors, I found out the problem was upgrading `Microsoft.A
 and its latest working version with the template is `1.15.1` - upgrading it to
 `1.16.0`, the next version, will reproduce the error.
 
-## Possible causes - my suspicions
-1. Bug in `Microsoft.Azure.Functions.Worker.Sdk` - unlikely
+## Possible roots of the problem - my suspicions
+
+1. A bug in `Microsoft.Azure.Functions.Worker.Sdk` since 1.16.0
 1. Azure Functions Core Tools outdated
-1. Project/Function template outdated
- 
+1. Project/Function template outdated - we need something
+
 ## Summary of steps to reproduce the problem
 
 1. Install the [Azure Functions Core Tools](https://github.com/Azure/azure-functions-core-tools) version 4.0.5348 on a Linux system.
@@ -56,3 +67,7 @@ and its latest working version with the template is `1.15.1` - upgrading it to
    - `dotnet add package Microsoft.Azure.Functions.Worker.Sdk`
 1. Run the Functions app locally
    - `func start --debug --verbose`
+
+## Codebase
+
+The codebase is listed in this [GitHub repository](https://github.com/kumkee/LocalFunctionProj).

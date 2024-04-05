@@ -43,11 +43,11 @@ and its latest working version with the template is `1.15.1` - upgrading it to
 
 1. Install the [Azure Functions Core Tools](https://github.com/Azure/azure-functions-core-tools) version 4.0.5348 on a Linux system.
 1. Create project from template
-   `func init LocalFunctionProj --worker-runtime dotnet-isolated --target-framework net8.0`
+   - `func init LocalFunctionProj --worker-runtime dotnet-isolated --target-framework net8.0`
 1. Create function from template
-   `cd LocalFunctionProj`
-   `func new --name HttpExample --template "HTTP trigger" --authlevel "anonymous"`
+   - `cd LocalFunctionProj`
+   - `func new --name HttpExample --template "HTTP trigger" --authlevel "anonymous"`
 1. Upgrade `Microsoft.Azure.Functions.Worker.Sdk`
-   `dotnet add package Microsoft.Azure.Functions.Worker.Sdk`
+   - `dotnet add package Microsoft.Azure.Functions.Worker.Sdk`
 1. Run the Functions app locally
-   `func start --debug --verbose`
+   - `func start --debug --verbose`

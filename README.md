@@ -39,6 +39,11 @@ After a few trial-and-errors, I found out the problem was upgrading `Microsoft.A
 and its latest working version with the template is `1.15.1` - upgrading it to
 `1.16.1`, the next version, will reproduce the error.
 
+## Possible causes - my suspicions
+1. Bug in `Microsoft.Azure.Functions.Worker.Sdk` - unlikely
+1. Azure Functions Core Tools outdated
+1. Project/Function template outdated
+ 
 ## Summary of steps to reproduce the problem
 
 1. Install the [Azure Functions Core Tools](https://github.com/Azure/azure-functions-core-tools) version 4.0.5348 on a Linux system.

@@ -1,4 +1,4 @@
-# "No job functions found" warning when upgrading Microsoft.Azure.Functions.Worker.Sdk to 1.16.1 or above
+# "No job functions found" warning when upgrading Microsoft.Azure.Functions.Worker.Sdk to 1.16.0 or above
 
 I am trying to migrate my HTTP-triggered Azure Functions Apps to isolated process. For myself to understand how an isolated-process Functions app work, I started from the template provided by the Azure Functions Core Tools (version 4.0.5348 - the latest NixOS provides at the time of writing) following official [Quick-Start Guide](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-cli-csharp?tabs=linux%2Cazure-cli).
 
@@ -37,7 +37,7 @@ The latest library versions, at the time of writing, are
 
 After a few trial-and-errors, I found out the problem was upgrading `Microsoft.Azure.Functions.Worker.Sdk`
 and its latest working version with the template is `1.15.1` - upgrading it to
-`1.16.1`, the next version, will reproduce the error.
+`1.16.0`, the next version, will reproduce the error.
 
 ## Possible causes - my suspicions
 1. Bug in `Microsoft.Azure.Functions.Worker.Sdk` - unlikely

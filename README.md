@@ -71,3 +71,7 @@ and its latest working version with the template is `1.15.1` - upgrading it to
 ## Codebase
 
 The codebase is listed in this [GitHub repository](https://github.com/kumkee/LocalFunctionProj).
+
+## Similar questions
+
+[This question](https://stackoverflow.com/questions/77540016/no-job-functions-found-migrating-to-net-8-isolated-worker-process) is the closest, but it is about upgrading from existing project but not about creating a brand new one.

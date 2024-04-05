@@ -1,8 +1,8 @@
 # "No job functions found" warning when upgrading Microsoft.Azure.Functions.Worker.Sdk to 1.16.1 or above
 
-I am trying to migrate my HTTP-triggered Azure Functions Apps to isolated process. For myself to understand how an isolated-process Functions app work, I started from the template provided by the Azure Functions Core Tools (version 4.0.5348 - the latest NixOS provides at the time of writing) following official [Quick-Start Guide](https://learn.microsoft.com/en-us/azure/azure-functions/dotnet-isolated-process-guide?tabs=linux).
+I am trying to migrate my HTTP-triggered Azure Functions Apps to isolated process. For myself to understand how an isolated-process Functions app work, I started from the template provided by the Azure Functions Core Tools (version 4.0.5348 - the latest NixOS provides at the time of writing) following official [Quick-Start Guide](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-cli-csharp?tabs=linux%2Cazure-cli).
 
-The template works without upgrading any of the librarijes that come with it.
+The template works without upgrading any of the libraries that come with it.
 One can visit the local address `http://localhost:7071/api/HttpExample` and see
 the HTTP response `Welcome to Azure Functions!`.
 
@@ -38,3 +38,16 @@ The latest library versions, at the time of writing, are
 After a few trial-and-errors, I found out the problem was upgrading `Microsoft.Azure.Functions.Worker.Sdk`
 and its latest working version with the template is `1.15.1` - upgrading it to
 `1.16.1`, the next version, will reproduce the error.
+
+## Summary of steps to reproduce the problem
+
+1. Install the [Azure Functions Core Tools](https://github.com/Azure/azure-functions-core-tools) version 4.0.5348 on a Linux system.
+1. Create project from template
+   `func init LocalFunctionProj --worker-runtime dotnet-isolated --target-framework net8.0`
+1. Create function from template
+   `cd LocalFunctionProj`
+   `func new --name HttpExample --template "HTTP trigger" --authlevel "anonymous"`
+1. Upgrade `Microsoft.Azure.Functions.Worker.Sdk`
+   `dotnet add package Microsoft.Azure.Functions.Worker.Sdk`
+1. Run the Functions app locally
+   `func start --debug --verbose`
